@@ -56,9 +56,9 @@ export default function Home() {
 					<div className="grid grid-cols-2 gap-4 h-full mt-10">
 						<Card
 							title="Installation"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam, nulla nec dignissim iaculis, enim nisi tincidunt odio, a varius ex lacus nec ligula. "
+							description="Learn how to get up and running with UTSA STEM Craft!"
 							buttonText="Visit"
-							link="https://google.com"
+							link="https://stemcraft.xyz/install"
 						/>
 						<Card
 							title="Factions"

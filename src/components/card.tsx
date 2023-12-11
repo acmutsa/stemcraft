@@ -14,7 +14,7 @@ export default function Card({ title, description, link, buttonText }: cardProps
 			<h1 className="text-3xl font-black text-emerald-700">{title}</h1>
 			<p className="font-bold">{description}</p>
 			<Link href={link}>
-				<button className="rounded bg-emerald-700 font-bold mt-2 px-5 py-2 text-white flex gap-1 items-center">
+				<button className="justify-self-end rounded bg-emerald-700 font-bold mt-2 px-5 py-2 text-white flex gap-1 items-center">
 					{buttonText}
 					<FaArrowRight />
 				</button>
