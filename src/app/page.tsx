@@ -93,7 +93,7 @@ export default async function Page() {
 					<div className="grid grid-cols-1 mt-20">
 						<div className="border-b-white border-b grid grid-cols-5 text-white py-2 font-bold">
 							<div>Title</div>
-							<div className="col-span-3">Descriptions</div>
+							<div className="col-span-3">Description</div>
 							<div>View</div>
 						</div>
 						{Object.entries(guides).map(([key, data]) => (
