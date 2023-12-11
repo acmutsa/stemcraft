@@ -2,8 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
 import Card from "@/components/card";
+import { get } from "@vercel/edge-config";
+import type { GuideRecord } from "@/types/edge";
+import GuideItem from "@/components/GuideItem";
 
-export default function Home() {
+export default async function Page() {
+	const guides = (await get("guides")) as GuideRecord;
 	return (
 		<>
 			<main className="bg-emerald-700 h-full text-white px-5">
@@ -52,9 +56,9 @@ export default function Home() {
 					</div>
 				</div>
 			</main>
-			<section className="py-64">
+			<section className="py-64" id="links">
 				<div className="max-w-6xl mx-auto w-full min-h-[50vh] px-5">
-					<h3 className="font-black text-6xl text-emerald-700">Guides</h3>
+					<h3 className="font-black text-6xl text-emerald-700">Quick Links</h3>
 					<div className="grid grid-cols-2 gap-4 h-full mt-10">
 						<Card
 							title="Installation"
@@ -64,26 +68,41 @@ export default function Home() {
 						/>
 						<Card
 							title="Factions"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam, nulla nec dignissim iaculis, enim nisi tincidunt odio, a varius ex lacus nec ligula. "
+							description="Learn more about factions on the server and what they entail."
 							buttonText="Visit"
-							link="https://google.com"
+							link="/guide/factions"
 						/>
 						<Card
 							title="Mod List"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam, nulla nec dignissim iaculis, enim nisi tincidunt odio, a varius ex lacus nec ligula. "
+							description="View the Modlist for the server."
 							buttonText="Visit"
-							link="https://google.com"
+							link="/guide/mods"
 						/>
 						<Card
-							title="Resources"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam, nulla nec dignissim iaculis, enim nisi tincidunt odio, a varius ex lacus nec ligula. "
+							title="Voice Chat"
+							description="Learn how Proximity Voice Chat works on the server."
 							buttonText="Visit"
-							link="https://google.com"
+							link="/guide/voice"
 						/>
 					</div>
 				</div>
 			</section>
-			<footer className="bg-[#179BD5] w-full h-20 mb-10 flex items-center justify-center flex-col">
+			<section className="py-64 bg-emerald-700" id="guides">
+				<div className="max-w-6xl mx-auto w-full min-h-[50vh] px-5">
+					<h3 className="font-black text-6xl text-white">Guides</h3>
+					<div className="grid grid-cols-1 mt-20">
+						<div className="border-b-white border-b grid grid-cols-5 text-white py-2 font-bold">
+							<div>Title</div>
+							<div className="col-span-3">Descriptions</div>
+							<div>View</div>
+						</div>
+						{Object.entries(guides).map(([key, data]) => (
+							<GuideItem title={data.title} description={data.description} link={data.url} />
+						))}
+					</div>
+				</div>
+			</section>
+			<footer className="bg-[#179BD5] w-full h-20 flex items-center justify-center flex-col">
 				<p className="font-bold text-white">Made with ♥ & {"</>"} @ ACM UTSA</p>
 				<p className="font-bold text-white">
 					© The Association for Computing Machinery at UTSA 2023. All Rights Reserved.
@@ -92,3 +111,6 @@ export default function Home() {
 		</>
 	);
 }
+
+export const runtime = "edge";
+export const revalidate = 60;
