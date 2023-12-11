@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
 		return NextResponse.redirect(new URL(redirects[path]));
 	}
 	if (path.startsWith("/guide/") && Object.keys(guides).includes(path.replace("/guide/", ""))) {
-		return NextResponse.redirect(new URL(guides[path].url));
+		return NextResponse.redirect(new URL(guides[path.replace("/guide/", "")].url));
 	}
 
 	return NextResponse.next();
