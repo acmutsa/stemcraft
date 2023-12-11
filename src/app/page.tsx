@@ -12,10 +12,12 @@ export default function Home() {
 						<h2 className="font-bold text-3xl">Welcome to</h2>
 						<h1 className="font-black text-6xl">UTSA STEM Craft</h1>
 						<div className="flex gap-2 gap-x-4 mt-10">
-							<button className="rounded-full bg-white hover:bg-gray-200 transition-all duration-200 text-emerald-700 font-bold px-5 py-2 flex gap-x-1 items-center">
-								Install Guide
-								<FaArrowRight />
-							</button>
+							<Link href={"/install"}>
+								<button className="rounded-full bg-white hover:bg-gray-200 transition-all duration-200 text-emerald-700 font-bold px-5 py-2 flex gap-x-1 items-center">
+									Install Guide
+									<FaArrowRight />
+								</button>
+							</Link>
 							<Link
 								href={"https://discord.stemcraft.xyz"}
 								className="flex items-center gap-1 hover:underline font-light"
