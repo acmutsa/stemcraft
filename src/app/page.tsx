@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowRight, FaExternalLinkAlt, FaCheck, FaCopy } from "react-icons/fa";
 import Card from "@/components/card";
 import { get } from "@vercel/edge-config";
 import type { GuideRecord } from "@/types/edge";
 import GuideItem from "@/components/GuideItem";
+import { CopyButton } from "@/components/CopyButton";
 
 export default async function Page() {
 	const guides = (await get("guides")) as GuideRecord;
@@ -31,6 +32,7 @@ export default async function Page() {
 									<FaArrowRight />
 								</button>
 							</Link>
+							<CopyButton />
 							<Link
 								href={"https://discord.stemcraft.xyz"}
 								className="flex items-center gap-1 hover:underline font-light"
