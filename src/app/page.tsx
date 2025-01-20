@@ -89,12 +89,12 @@ export default async function Page() {
 							buttonText="Visit"
 							link="/guide/mods"
 						/>
-						<Card
+						{/* <Card
 							title="Voice Chat"
 							description="Learn how Proximity Voice Chat works on the server."
 							buttonText="Visit"
 							link="/guide/voice"
-						/>
+						/> */}
 					</div>
 				</div>
 			</section>
