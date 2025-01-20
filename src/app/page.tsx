@@ -8,8 +8,17 @@ import GuideItem from "@/components/GuideItem";
 
 export default async function Page() {
 	const guides = (await get("guides")) as GuideRecord;
+	const announcement = await get("announcement");
+	console.log(announcement);
 	return (
 		<>
+			{announcement && typeof announcement === "string" ? (
+				<div className="w-full max-w-screen bg-white text-emerald-800 py-2">
+					<div className="max-w-6xl mx-auto px-5 text-center font-bold">
+						{announcement}
+					</div>
+				</div>
+			) : null}
 			<main className="bg-emerald-700 h-full text-white px-5">
 				<div className="max-w-6xl mx-auto w-full min-h-[75vh] grid grid-cols-2">
 					<div className="flex flex-col justify-center">
@@ -97,7 +106,12 @@ export default async function Page() {
 							<div>View</div>
 						</div>
 						{Object.entries(guides).map(([key, data]) => (
-							<GuideItem title={data.title} description={data.description} link={data.url} />
+							<GuideItem
+								key={data.title}
+								title={data.title}
+								description={data.description}
+								link={data.url}
+							/>
 						))}
 					</div>
 				</div>
@@ -105,7 +119,7 @@ export default async function Page() {
 			<footer className="bg-[#179BD5] w-full h-20 flex items-center justify-center flex-col">
 				<p className="font-bold text-white">Made with ♥ & {"</>"} @ ACM UTSA</p>
 				<p className="font-bold text-white">
-					© The Association for Computing Machinery at UTSA 2023. All Rights Reserved.
+					© The Association for Computing Machinery at UTSA 2025. All Rights Reserved.
 				</p>
 			</footer>
 		</>
